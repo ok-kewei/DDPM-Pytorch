@@ -8,29 +8,27 @@ This project provides a PyTorch implementation of a **Denoising Diffusion Probab
 
 * **Linear:** Noise increases linearly across timesteps.
  
-<img src="https://latex.codecogs.com/png.image?\dpi{110}%20%5Cbeta_t%20%3D%20%5Cbeta_1%20%2B%20%5Cfrac%7Bt-1%7D%7BT-1%7D%20(%5Cbeta_T%20-%20%5Cbeta_1)%2C%20t%3D1%2C2%2C...%2CT" alt="linear beta_t formula">
-
-
-  Then we define:
-
- <img src="https://latex.codecogs.com/png.image?\dpi{110}%20%5Calpha_t%20%3D%201%20-%20%5Cbeta_t%2C%20%5Cquad%20%5Cbar%7B%5Calpha%7D_t%20%3D%20%5Cprod_%7Bs%3D1%7D%5E%7Bt%7D%20%5Calpha_s" alt="alpha_t formula">
+    <img src="https://latex.codecogs.com/png.image?\dpi{110}%20%5Cbeta_t%20%3D%20%5Cbeta_1%20%2B%20%5Cfrac%7Bt-1%7D%7BT-1%7D%20(%5Cbeta_T%20-%20%5Cbeta_1)%2C%20t%3D1%2C2%2C...%2CT" alt="linear beta_t formula">
+    
+    
+    Then we define:
+    
+    <img src="https://latex.codecogs.com/png.image?\dpi{110}%20%5Calpha_t%20%3D%201%20-%20%5Cbeta_t%2C%20%5Cquad%20%5Cbar%7B%5Calpha%7D_t%20%3D%20%5Cprod_%7Bs%3D1%7D%5E%7Bt%7D%20%5Calpha_s" alt="alpha_t formula">
 
   
 * **Cosine:** Noise follows a cosine function for smoother denoising transitions.
- 
-  <img src="https://latex.codecogs.com/png.image?\dpi{110}%20%5Cbar%7B%5Calpha%7D_t%20%3D%20%5Cfrac%7B%5Ccos%5E2%28%28t%2FT%20%2B%20s%29%2F%281%2Bs%29%20%5Ccdot%20%5Cpi%2F2%29%7D%7B%5Ccos%5E2%28s%2F%281%2Bs%29%20%5Ccdot%20%5Cpi%2F2%29%7D%2C%20t%3D0%2C1%2C...%2CT" alt="cosine alpha_bar_t formula">
+    
+   <img src="https://latex.codecogs.com/png.image?\dpi{110}%20%5Cbar%7B%5Calpha%7D_t%20=%20%5Cfrac%7B%5Ccos%5E2%28%5Cdfrac%7B%5Cdfrac%7Bt%7D%7BT%7D%20+%20s%7D%7B1%20+%20s%7D%20%5Ccdot%20%5Cfrac%5Cpi%7B2%7D%29%7D%7B%5Ccos%5E2%28%5Cdfrac%7Bs%7D%7B1%20+%20s%7D%20%5Ccdot%20%5Cfrac%5Cpi%7B2%7D%29%7D%2C%20%20%20t=0,1,...,T;%09%09%09s=0.008" alt="cosine alpha_bar_t nested fractions">
 
 
-  From ᾱₜ, we compute βₜ:
-
-<img src="https://latex.codecogs.com/png.image?\dpi{110}%20%5Cbeta_t%20%3D%20%5Cmin%281%20-%20%5Cfrac%7B%5Cbar%7B%5Calpha%7D_t%7D%7B%5Cbar%7B%5Calpha%7D_%7Bt-1%7D%7D%2C%200.999%29%2C%20t%3D1%2C2%2C...%2CT" alt="cosine beta_t formula">
-
-
-
-  Forward diffusion process:
-
-
-<img src="https://latex.codecogs.com/png.image?\dpi{110}%20x_t%20%3D%20%5Csqrt%7B%5Cbar%7B%5Calpha%7D_t%7D%20x_0%20%2B%20%5Csqrt%7B1%20-%20%5Cbar%7B%5Calpha%7D_t%7D%20%5Cepsilon%2C%20%5Cepsilon%20%5Csim%20%5Cmathcal%7BN%7D%280%2C%20I%29" alt="forward diffusion formula">
+    From ᾱₜ, we compute βₜ:
+    
+    <img src="https://latex.codecogs.com/png.image?\dpi{110}%20%5Cbeta_t%20%3D%20%5Cmin%281%20-%20%5Cfrac%7B%5Cbar%7B%5Calpha%7D_t%7D%7B%5Cbar%7B%5Calpha%7D_%7Bt-1%7D%7D%2C%200.999%29%2C%20t%3D1%2C2%2C...%2CT" alt="cosine beta_t formula">
+    
+    
+    
+    <!-- Forward diffusion process:     
+    <img src="https://latex.codecogs.com/png.image?\dpi{110}%20x_t%20%3D%20%5Csqrt%7B%5Cbar%7B%5Calpha%7D_t%7D%20x_0%20%2B%20%5Csqrt%7B1%20-%20%5Cbar%7B%5Calpha%7D_t%7D%20%5Cepsilon%2C%20%5Cepsilon%20%5Csim%20%5Cmathcal%7BN%7D%280%2C%20I%29" alt="forward diffusion formula"> -->
 
 
 All components—including training, sampling, and evaluation—are implemented from scratch for educational and experimental purposes.
@@ -101,5 +99,6 @@ Example (linear vs. cosine schedule):
 - **Cosine:** Final images are sharper and better defined — exactly what cosine is designed for, yielding sharper convergence at the end
 
   
+
 
 
