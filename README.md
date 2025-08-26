@@ -23,7 +23,7 @@ This project provides a PyTorch implementation of a **Denoising Diffusion Probab
 
   From ᾱₜ, we compute βₜ:
 
-<img src="https://latex.codecogs.com/png.image?\dpi{150}%20%5Cbeta_t%20%3D%20%5Cmin%281%20-%20%5Cfrac%7B%5Cbar%7B%5Calpha%7D_t%7D%7B%5Cbar%7B%5Calpha%7D_%7Bt-1%7D%7D%2C%200.999%29%2C%20t%3D1%2C2%2C...%2CT" alt="cosine beta_t formula">
+<img src="https://latex.codecogs.com/png.image?\dpi{110}%20%5Cbeta_t%20%3D%20%5Cmin%281%20-%20%5Cfrac%7B%5Cbar%7B%5Calpha%7D_t%7D%7B%5Cbar%7B%5Calpha%7D_%7Bt-1%7D%7D%2C%200.999%29%2C%20t%3D1%2C2%2C...%2CT" alt="cosine beta_t formula">
 
 
 
@@ -101,4 +101,5 @@ Example (linear vs. cosine schedule):
 - **Cosine:** Final images are sharper and better defined — exactly what cosine is designed for, yielding sharper convergence at the end
 
   
+
 
